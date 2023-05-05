@@ -12,14 +12,14 @@ const Header: FC = () => {
   }, [dataUser]);
 
   return (
-    <header className="flex justify-between">
+    <header className="flex justify-between p-5 font-bold shadow-md">
       <section>
         <h1>NY | Book</h1>
       </section>
-      <section className="flex">
-        <div className="px-2">Article</div>
-        <div className="px-2">Cart</div>
-        <div className="px-2">Gatcha</div>
+      <section className="flex justify-between">
+        <div className="px-6">Article</div>
+        <div className="px-6">History</div>
+        <div className="px-6">Gatcha</div>
       </section>
       <section>
         <p>Coin: {formatToMoney(coin)}</p>

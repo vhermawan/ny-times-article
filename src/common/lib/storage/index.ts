@@ -1,4 +1,4 @@
-const LOCAL_STORAGE = typeof window !== 'undefined' ? window.localStorage : null;
+export const LOCAL_STORAGE = typeof window !== 'undefined' ? window.localStorage : null;
 
 export const storage = {
   get: (key: string): string | null => {
