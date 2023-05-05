@@ -13,15 +13,18 @@
     "sonar": "node sonarqube-scanner.js"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.5",
+    "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
     "husky": "^8.0.3",
     "next": "13.4.0",
+    "postcss": "^8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-query": "^3.39.3",
     "standard-version": "^9.5.0",
+    "tailwindcss": "^3.3.2",
     "typescript": "5.0.4",
     "zod": "^3.21.4"
   },
@@ -33,11 +36,11 @@
     "@types/node": "18.16.3",
     "@types/react": "18.2.5",
     "@types/react-dom": "18.2.3",
-    "sonarqube-scanner": "^3.0.1",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
-    "lint-staged": "^13.2.2"
+    "sonarqube-scanner": "^3.0.1"
   },
   "husky": {
     "hooks": {
