@@ -3,7 +3,7 @@ const scanner = require('sonarqube-scanner');
 scanner(
   {
     serverUrl: 'http://localhost:9000',
-    token: 'sqp_9bd2ec00bd46764b69907fe976a9692928e98d7d',
+    token: 'sqp_4af557105e55ffb0ac80532defb3376e608c835f',
   },
   () => process.exit(),
 );
