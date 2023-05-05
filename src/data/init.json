@@ -1,0 +1,8 @@
+{
+  "totalCoin":100000,
+  "totalTicket":0,
+  "books":{
+    "total": 0,
+    "list": []
+  }
+}
