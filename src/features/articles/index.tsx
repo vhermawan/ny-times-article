@@ -10,8 +10,6 @@ import Loading from '@/components/loading';
 const ArticlePage: FC = () => {
   const { data, isFetching } = useQuery(['list-articles'], () => getArticles('emailed', 1));
 
-  console.log('data', data?.results[0]);
-
   return (
     <Layout>
       <Loading isLoading={isFetching} />

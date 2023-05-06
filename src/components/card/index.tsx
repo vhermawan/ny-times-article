@@ -6,7 +6,7 @@ type CardProps = {
 
 const Card: FC<CardProps> = () => {
   return (
-    <div className="max-w-xl mx-auto">
+    <div className="max-w-xl mx-auto" role="article">
       <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img

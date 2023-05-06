@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 const GatchaPage: FC = () => {
-  return <div></div>;
+  return <div>Gatcha Page</div>;
 };
 
 export default GatchaPage;

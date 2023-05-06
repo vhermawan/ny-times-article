@@ -5,13 +5,15 @@ module.exports = {
     '!***.config.js',
     '!**.*.js',
     '!**sonarqube-scanner.js',
-    '!**/lib/dto',
-    '!**/lib/entities',
   ],
   moduleNameMapper: {
+
+    '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    
     '@/common/(.*)$': '<rootDir>/src/common/$1',
     '@/data/(.*)$': '<rootDir>/src/data/$1',
     '@/helpers/(.*)$': '<rootDir>/src/helpers/$1',
+    '@/features/(.*)$': '<rootDir>/src/features/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
