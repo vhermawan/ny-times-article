@@ -1,17 +1,34 @@
 import { formatDate } from '@/common/lib/format';
 import { storage } from '@/common/lib/storage';
 import BreadCrumbs from '@/components/breadcumbs';
+import Button from '@/components/button';
 import Container from '@/components/container';
 import Layout from '@/components/layout';
-import { Decryption } from '@/helpers';
+import { useGlobalContext } from '@/context';
+import { countLimitFreeArticle, getTicket } from '@/features/articles/helpers';
+import { Decryption, Encryption, GetDataUser } from '@/helpers';
 import { useEffect, useState } from 'react';
+import router from 'next/router';
 
 export default function DetailArticle() {
-  const [dataDetail, setDataDetail] = useState<Articles | null>(null);
+  const { setDataUser, user } = useGlobalContext();
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataDetail, setDataDetail] = useState<Articles>({
+    id: 0,
+    abstract: '',
+    title: '',
+    imageUrl: '',
+    articleUrl: '',
+    priceArticle: 0,
+    publishDate: '',
+  });
 
   useEffect(() => {
     const data = storage.get('DETAIL');
-    if (data) setDataDetail(Decryption(data));
+    if (data) {
+      setDataDetail(Decryption(data));
+      setIsLoading(false);
+    } else router.push('/articles');
   }, []);
 
   const dataUrl: BreadCumbs[] = [
@@ -27,8 +44,39 @@ export default function DetailArticle() {
     },
   ];
 
+  const onBuyArticle = (data: Articles): void => {
+    // let dataUser = user;
+    const dataUser = GetDataUser();
+    if (dataUser) {
+      const book: Articles = {
+        id: dataUser.books.list.length,
+        title: data.title,
+        imageUrl: data.imageUrl,
+        publishDate: data.publishDate,
+        abstract: data.abstract,
+        articleUrl: data.articleUrl,
+        priceArticle: data.priceArticle,
+      };
+      const isBookBuyed = dataUser.books.list.find(data => data.title === book.title);
+      const bonusTicket = getTicket(data.priceArticle);
+      const quotaLimit = countLimitFreeArticle(data.publishDate, dataUser.limitFree);
+
+      if (isBookBuyed) alert('this article already buyed');
+      else if (dataUser.totalCoin === 0) alert('Your coint is not enough to buy this article');
+      else if (dataUser.limitFree === 0) alert('Your quota limit is empty');
+      else {
+        dataUser.books.list.push(book);
+        dataUser.totalCoin -= data.priceArticle;
+        dataUser.totalTicket += bonusTicket;
+        dataUser.limitFree = quotaLimit;
+        setDataUser(dataUser);
+        storage.set('USER_DATA', Encryption(dataUser));
+      }
+    }
+  };
+
   return (
-    <Layout isLoading={dataDetail ? false : true}>
+    <Layout isLoading={isLoading}>
       <Container>
         <section className="text-gray-700 body-font overflow-hidden bg-white">
           <div className="container px-5 lg:px-[90px] mx-auto">
@@ -39,18 +87,21 @@ export default function DetailArticle() {
                 className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
                 src={dataDetail?.imageUrl}
               />
-              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+              <div className="lg:w-1/2 w-full lg:pl-10 sm:py-6 lg:py-6 mt-6 lg:mt-0">
                 <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                   {dataDetail?.title}
                 </h1>
                 <p className="leading-relaxed mt-4">{dataDetail?.abstract}</p>
-                <div className="flex mt-6">
+                <div className="flex justify-between mt-6">
                   <span className="title-font font-medium text-2xl text-gray-900">
                     {formatDate(dataDetail?.publishDate || '')}
                   </span>
-                  <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                    Button
-                  </button>
+                  <Button
+                    text="Buy Article"
+                    type="button"
+                    onClick={() => onBuyArticle(dataDetail)}
+                    variant="success"
+                  />
                 </div>
               </div>
             </div>

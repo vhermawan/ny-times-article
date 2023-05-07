@@ -4,14 +4,15 @@ interface Articles {
   publishDate: string;
   abstract:string;
   articleUrl: string;
+  priceArticle: number;
   id:number;
 }
 
 type UserData = {
   totalCoin: number;
   totalTicket: number;
+  limitFree: number;
   books: {
-    total: number;
     list: Articles[]
   }
 }

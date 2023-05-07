@@ -15,7 +15,7 @@ const Button: FC<ButtonProps> = ({ text, onClick, type, variant }) => {
       case 'success':
         return 'bg-green-700 hover:bg-green-800 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800';
       case 'info':
-        return 'bg-transparent border hover:bg-blue-800 dark:bg-blue-600 dark:focus:ring-blue-800';
+        return 'bg-blue-800 border hover:bg-blue-800 dark:bg-blue-600 dark:focus:ring-blue-800';
       default:
         const neverHappen: never = variant;
         return neverHappen;

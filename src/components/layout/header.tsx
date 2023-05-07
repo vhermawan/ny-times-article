@@ -8,37 +8,29 @@ import {
 } from '@heroicons/react/24/outline';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import NavLink from '../navLink';
-import { GetDataUser } from '@/helpers';
 import { formatToMoney } from '@/common/lib/format';
+import { useGlobalContext } from '@/context';
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
-const dataUser = GetDataUser();
-
 export default function Example() {
-  const [coin, setCoin] = useState(0);
-  const [ticket, setTicket] = useState(0);
+  const { user } = useGlobalContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const products = [
     {
       name: 'Total Coin',
-      description: formatToMoney(coin),
+      description: formatToMoney(user.totalCoin),
       icon: ChartPieIcon,
     },
     {
       name: 'Total Ticket',
-      description: ticket.toString(),
+      description: user.totalTicket.toString(),
       icon: CursorArrowRaysIcon,
     },
   ];
-
-  useEffect(() => {
-    setCoin(dataUser?.totalCoin || 0);
-    setTicket(dataUser?.totalTicket || 0);
-  }, [dataUser]);
 
   return (
     <header className="bg-white">

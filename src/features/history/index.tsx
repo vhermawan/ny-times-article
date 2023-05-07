@@ -2,20 +2,14 @@ import { formatDate } from '@/common/lib/format';
 import Container from '@/components/container';
 import Layout from '@/components/layout';
 import Title from '@/components/title';
-import { GetDataUser } from '@/helpers';
-import { FC, Fragment, useEffect, useState } from 'react';
-
-const dataUser = GetDataUser();
+import { useGlobalContext } from '@/context';
+import { FC, Fragment } from 'react';
 
 const HistoryPage: FC = () => {
-  const [dataArticle, setDataArticle] = useState<Articles[]>([]);
-
-  useEffect(() => {
-    if (dataUser) setDataArticle(dataUser.books.list);
-  }, []);
+  const { user } = useGlobalContext();
 
   return (
-    <Layout isLoading={dataArticle ? false : true}>
+    <Layout isLoading={user ? false : true}>
       <Container>
         <section className="bg-white">
           <div className="container px-6 py-10 mx-auto dark:bg-gray-900">
@@ -23,7 +17,7 @@ const HistoryPage: FC = () => {
               <Title title="Article Buyed" />
             </div>
 
-            {dataArticle.map(data => (
+            {user.books.list.map(data => (
               <Fragment key={data.title}>
                 <div className="lg:w-4/5 mx-auto flex flex-wrap my-5 border p-6 rounded-lg dark:text-white">
                   <img

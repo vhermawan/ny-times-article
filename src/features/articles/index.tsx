@@ -7,12 +7,13 @@ import Container from '@/components/container';
 import Title from '@/components/title';
 import Loading from '@/components/loading';
 import Select from '@/components/select';
-import { getTicket, mappingData, mappingPriceArticle } from './helpers';
+import { countLimitFreeArticle, getTicket, mappingData, mappingPriceArticle } from './helpers';
 import Card from '@/components/card';
 import { storage } from '@/common/lib/storage';
 import { Encryption, GetDataUser, Slugify } from '@/helpers';
 import router from 'next/router';
 import { LIST_PERIOD_ARTICLES, LIST_TYPE_ARTICLES } from './constant/index.constant';
+import { useGlobalContext } from '@/context';
 
 const ArticlePage: FC = () => {
   const [type, setType] = useState('all');
@@ -89,37 +90,11 @@ const ArticlePage: FC = () => {
     router.push(`/articles/${Slugify(data.title)}`);
   };
 
-  const onBuyArticle = (data: Articles): void => {
-    const dataUser = GetDataUser();
-    if (dataUser) {
-      const book: Articles = {
-        id: dataUser.books.list.length,
-        title: data.title,
-        imageUrl: data.imageUrl,
-        publishDate: data.publishDate,
-        abstract: data.abstract,
-        articleUrl: data.articleUrl,
-      };
-      const isBookBuyed = dataUser.books.list.find(data => data.title === book.title);
-      const priceArticle = mappingPriceArticle(data.publishDate);
-      const bonusTicket = getTicket(priceArticle);
-
-      if (isBookBuyed) alert('this article already buyed');
-      else if (dataUser.totalCoin === 0) alert('Your coint is not enough to buy this article');
-      else {
-        dataUser.books.list.push(book);
-        dataUser.totalCoin -= priceArticle;
-        dataUser.totalTicket += bonusTicket;
-        storage.set('USER_DATA', Encryption(dataUser));
-      }
-    }
-  };
-
   return (
     <Layout isLoading={isLoading}>
       <Container>
         <div className="flex justify-between align-middle mt-10">
-          <div className="w-[400px] mb-4">
+          <div className=" w-fit px-6 dark:px-0 mb-4">
             <div className="flex items-center border-b border-teal-500 py-2">
               <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -156,22 +131,14 @@ const ArticlePage: FC = () => {
                   return (
                     <Fragment key={data.id}>
                       <div ref={onHandleLastDataElement}>
-                        <Card
-                          data={data}
-                          onReadMore={data => onRouteReadMore(data)}
-                          onBuyArticle={data => onBuyArticle(data)}
-                        />
+                        <Card data={data} onReadMore={data => onRouteReadMore(data)} />
                       </div>
                     </Fragment>
                   );
                 } else {
                   return (
                     <Fragment key={data.title}>
-                      <Card
-                        data={data}
-                        onReadMore={data => onRouteReadMore(data)}
-                        onBuyArticle={data => onBuyArticle(data)}
-                      />
+                      <Card data={data} onReadMore={data => onRouteReadMore(data)} />
                     </Fragment>
                   );
                 }
