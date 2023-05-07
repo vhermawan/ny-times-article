@@ -1,11 +1,3 @@
-export interface Articles {
-  title:string;
-  imageUrl: string;
-  publishDate: string;
-  abstract:string;
-  id:number;
-}
-
 export interface SearchArticles {
     abstract:         string;
     web_url:          string;

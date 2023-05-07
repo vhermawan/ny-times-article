@@ -7,11 +7,10 @@ import Container from '@/components/container';
 import Title from '@/components/title';
 import Loading from '@/components/loading';
 import Select from '@/components/select';
-import { Articles } from './types';
-import { mappingData } from './helpers';
+import { getTicket, mappingData, mappingPriceArticle } from './helpers';
 import Card from '@/components/card';
 import { storage } from '@/common/lib/storage';
-import { Encryption, Slugify } from '@/helpers';
+import { Encryption, GetDataUser, Slugify } from '@/helpers';
 import router from 'next/router';
 import { LIST_PERIOD_ARTICLES, LIST_TYPE_ARTICLES } from './constant/index.constant';
 
@@ -21,8 +20,10 @@ const ArticlePage: FC = () => {
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+
   const [dataArticle, setDataArticle] = useState<Articles[]>([]);
   const [dataSearchArticle, setDataSearchArticle] = useState<Articles[]>([]);
+
   const observer = useRef<IntersectionObserver | undefined>();
 
   const { isFetching } = useQuery(
@@ -88,6 +89,32 @@ const ArticlePage: FC = () => {
     router.push(`/articles/${Slugify(data.title)}`);
   };
 
+  const onBuyArticle = (data: Articles): void => {
+    const dataUser = GetDataUser();
+    if (dataUser) {
+      const book: Articles = {
+        id: dataUser.books.list.length,
+        title: data.title,
+        imageUrl: data.imageUrl,
+        publishDate: data.publishDate,
+        abstract: data.abstract,
+        articleUrl: data.articleUrl,
+      };
+      const isBookBuyed = dataUser.books.list.find(data => data.title === book.title);
+      const priceArticle = mappingPriceArticle(data.publishDate);
+      const bonusTicket = getTicket(priceArticle);
+
+      if (isBookBuyed) alert('this article already buyed');
+      else if (dataUser.totalCoin === 0) alert('Your coint is not enough to buy this article');
+      else {
+        dataUser.books.list.push(book);
+        dataUser.totalCoin -= priceArticle;
+        dataUser.totalTicket += bonusTicket;
+        storage.set('USER_DATA', Encryption(dataUser));
+      }
+    }
+  };
+
   return (
     <Layout isLoading={isLoading}>
       <Container>
@@ -130,12 +157,9 @@ const ArticlePage: FC = () => {
                     <Fragment key={data.id}>
                       <div ref={onHandleLastDataElement}>
                         <Card
-                          id={data.id}
-                          title={data.title}
-                          imageUrl={data.imageUrl}
-                          publishDate={data.publishDate}
-                          abstract={data.abstract}
+                          data={data}
                           onReadMore={data => onRouteReadMore(data)}
+                          onBuyArticle={data => onBuyArticle(data)}
                         />
                       </div>
                     </Fragment>
@@ -144,12 +168,9 @@ const ArticlePage: FC = () => {
                   return (
                     <Fragment key={data.title}>
                       <Card
-                        id={data.id}
-                        title={data.title}
-                        imageUrl={data.imageUrl}
-                        publishDate={data.publishDate}
-                        abstract={data.abstract}
+                        data={data}
                         onReadMore={data => onRouteReadMore(data)}
+                        onBuyArticle={data => onBuyArticle(data)}
                       />
                     </Fragment>
                   );

@@ -1,6 +1,10 @@
-
-type ListBooks = {
-  title: string
+interface Articles {
+  title:string;
+  imageUrl: string;
+  publishDate: string;
+  abstract:string;
+  articleUrl: string;
+  id:number;
 }
 
 type UserData = {
@@ -8,7 +12,7 @@ type UserData = {
   totalTicket: number;
   books: {
     total: number;
-    list: ListBooks[]
+    list: Articles[]
   }
 }
 

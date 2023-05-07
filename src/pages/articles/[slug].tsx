@@ -1,12 +1,9 @@
 import { formatDate } from '@/common/lib/format';
 import { storage } from '@/common/lib/storage';
 import BreadCrumbs from '@/components/breadcumbs';
-import Button from '@/components/button';
 import Container from '@/components/container';
 import Layout from '@/components/layout';
-import { Articles } from '@/features/articles/types';
 import { Decryption } from '@/helpers';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function DetailArticle() {
