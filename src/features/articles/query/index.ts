@@ -16,7 +16,7 @@ export async function getArticles (type:string, period:string, responseSchema?: 
 }
 
 export async function searchArticles (page: number, responseSchema?: z.ZodSchema)  {
-  const response = await API.get(`/search/v2/articlesearch.json?sort=newest&page=${page}&`)
+  const response = await API.get(`/search/v2/articlesearch.json?sort=newest&page=${page}&begin_date=20130101&end_date=20230301&`)
   if (response?.status >= 200 || response?.status < 400) {
     if (responseSchema) {
       try {
