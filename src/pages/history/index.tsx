@@ -1,5 +1,5 @@
 import HistoryPage from '@/features/history';
 
-export default function Article() {
+export default function History() {
   return <HistoryPage />;
 }

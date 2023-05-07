@@ -2,15 +2,21 @@ import { FC } from 'react';
 
 type LoadingProps = {
   isLoading: boolean;
+  className?: string;
+  classNameText?: string;
 };
 
-const Loading: FC<LoadingProps> = ({ isLoading }) => {
+const Loading: FC<LoadingProps> = ({
+  isLoading,
+  className = 'min-h-screen',
+  classNameText = 'text-black',
+}) => {
   if (!isLoading) return null;
 
   return (
-    <div className="flex items-center justify-center min-h-screen" data-testid="loading">
-      <div className="w-8 h-8 border-4 border-blue-200 rounded-full animate-spin  border-t-transparent"></div>
-      <p className="ml-2">Loading...</p>
+    <div className={`flex items-center justify-center ${className}`} data-testid="loading">
+      <div className="w-8 h-8 border-4 border-blue-600 rounded-full animate-spin border-t-transparent"></div>
+      <p className={`ml-2 ${classNameText}`}>Loading...</p>
     </div>
   );
 };

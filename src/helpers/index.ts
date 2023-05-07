@@ -25,3 +25,10 @@ export function GetDataUser():UserData | undefined{
   const checkInitData = storage.get('USER_DATA')
   if(checkInitData) return Decryption(checkInitData)
 }
+
+export function Slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}

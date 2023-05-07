@@ -10,7 +10,7 @@ jest.mock('../../helpers', () => ({
 
 describe('Layout', () => {
   it('should call InitializeData on mount', () => {
-    render(<Layout>Test</Layout>);
+    render(<Layout isLoading>Test</Layout>);
     expect(InitializeData).toHaveBeenCalledTimes(1);
   });
 });

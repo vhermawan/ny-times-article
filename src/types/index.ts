@@ -11,3 +11,7 @@ type UserData = {
     list: ListBooks[]
   }
 }
+
+type BreadCumbs = {id:number, url: string | null, text: string | undefined}
+
+type Options = {label: string, value:string}
