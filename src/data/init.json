@@ -1,6 +1,6 @@
 {
   "totalCoin":100000,
-  "totalTicket":20,
+  "totalTicket":0,
   "limitFree": 5,
   "books":{
     "list": []
