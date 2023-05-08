@@ -1,0 +1,5 @@
+const MAX_AMOUNT = 50000;
+const MIN_AMOUNT = 1000;
+const LUCKY_AMOUNT = 13;
+
+export { MAX_AMOUNT, MIN_AMOUNT, LUCKY_AMOUNT };

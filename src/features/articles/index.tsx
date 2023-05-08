@@ -93,7 +93,7 @@ const ArticlePage: FC = () => {
     <Layout isLoading={isLoading}>
       <Container>
         <div className="flex justify-between align-middle mt-10">
-          <div className=" w-fit px-6 dark:px-0 mb-4">
+          <div className=" w-fit px-6 dark:px-0 mb-4 mt-10">
             <div className="flex items-center border-b border-teal-500 py-2">
               <input
                 className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"

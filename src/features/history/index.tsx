@@ -11,7 +11,7 @@ const HistoryPage: FC = () => {
   return (
     <Layout isLoading={user ? false : true}>
       <Container>
-        <section className="bg-white">
+        <section className="bg-white mt-[100px]">
           <div className="container px-6 py-10 mx-auto dark:bg-gray-900">
             <div className="flex lg:w-4/5 mx-auto">
               <Title title="Article Buyed" />
