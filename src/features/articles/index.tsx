@@ -7,13 +7,12 @@ import Container from '@/components/container';
 import Title from '@/components/title';
 import Loading from '@/components/loading';
 import Select from '@/components/select';
-import { countLimitFreeArticle, getTicket, mappingData, mappingPriceArticle } from './helpers';
+import { mappingData } from './helpers';
 import Card from '@/components/card';
 import { storage } from '@/common/lib/storage';
-import { Encryption, GetDataUser, Slugify } from '@/helpers';
+import { Encryption, Slugify } from '@/helpers';
 import router from 'next/router';
 import { LIST_PERIOD_ARTICLES, LIST_TYPE_ARTICLES } from './constant/index.constant';
-import { useGlobalContext } from '@/context';
 
 const ArticlePage: FC = () => {
   const [type, setType] = useState('all');

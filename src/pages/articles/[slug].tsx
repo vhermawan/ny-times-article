@@ -7,7 +7,7 @@ import Layout from '@/components/layout';
 import { useGlobalContext } from '@/context';
 import { countLimitFreeArticle, getTicket } from '@/features/articles/helpers';
 import { Decryption, Encryption } from '@/helpers';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import router from 'next/router';
 import Modal from '@/components/modal';
 
@@ -28,14 +28,6 @@ export default function DetailArticle() {
     priceArticle: 0,
     publishDate: '',
   });
-  const quotaFreeArticle = useRef(user.limitFree);
-  const messageModal = useRef(
-    dataDetail?.priceArticle > 0
-      ? `The rest of your money will be: ${formatToMoney(
-          user.totalCoin - dataDetail?.priceArticle,
-        )}`
-      : `The rest of your limit quota will be ${quotaFreeArticle.current - 1}`,
-  );
 
   useEffect(() => {
     const data = storage.get('DETAIL');
@@ -134,8 +126,10 @@ export default function DetailArticle() {
         variant="info"
       >
         <div className="flex flex-col mt-4 gap-2">
-          <p>{`You will buy article: ${dataDetail?.title}`}</p>
-          <p>{messageModal.current}</p>
+          <p>
+            You will buy article <span className=" italic font-bold">{dataDetail?.title}</span> are
+            you sure?
+          </p>
         </div>
         <div className="flex gap-2 mt-4">
           <Button
