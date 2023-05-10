@@ -23,10 +23,7 @@ const GatchaPage: FC = () => {
 
     const amount = amounts.current[randomIndex];
 
-    if (amount === MAX_AMOUNT) {
-      amounts.current = [20000, 10000, 13, 0];
-      return amount;
-    }
+    if (amount === MAX_AMOUNT) amounts.current = [20000, 10000, 13, 0];
 
     return amount;
   }
@@ -50,7 +47,7 @@ const GatchaPage: FC = () => {
 
     if (randomAmount === LUCKY_AMOUNT) {
       const amountSpecial = getRandomAmountSpecial();
-      amountSpecial.map(data => listAmount.push(data));
+      amountSpecial.forEach(data => listAmount.push(data));
 
       randomAmount = amountSpecial.reduce(
         (accumulator, currentValue) => accumulator + currentValue,

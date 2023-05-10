@@ -1,4 +1,4 @@
-import { formatDate, formatToMoney } from '@/common/lib/format';
+import { formatDate } from '@/common/lib/format';
 import { storage } from '@/common/lib/storage';
 import BreadCrumbs from '@/components/breadcumbs';
 import Button from '@/components/button';
@@ -88,7 +88,7 @@ export default function DetailArticle() {
     <Layout isLoading={isLoading}>
       <Container>
         <section className="text-gray-700 body-font overflow-hidden bg-white">
-          <div className="container px-5 lg:px-[90px] mx-auto">
+          <div className="container px-5 lg:px-[90px] mx-auto mt-24">
             <BreadCrumbs dataUrl={dataUrl} />
             <div className="lg:w-full mx-auto flex flex-wrap">
               <img

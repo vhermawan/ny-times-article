@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 interface IGlobalContextProps {
   user: UserData;
@@ -38,14 +38,13 @@ export const GlobalContextProvider = (props: {
     },
   });
 
-  return (
-    <GlobalContext.Provider
-      value={{
-        user: currentUser,
-        setDataUser: setCurrentUser,
-      }}
-    >
-      {props.children}
-    </GlobalContext.Provider>
+  const contextValue = useMemo(
+    () => ({
+      user: currentUser,
+      setDataUser: setCurrentUser,
+    }),
+    [currentUser],
   );
+
+  return <GlobalContext.Provider value={contextValue}>{props.children}</GlobalContext.Provider>;
 };
