@@ -1,6 +1,6 @@
 import { storage } from '@/common/lib/storage';
 import InitData from '@/data/init.json'
-import { Encryption, Decryption, InitializeData, ResetData, GetDataUser } from './index';
+import { Encryption, Decryption, InitializeData, ResetData, GetDataUser, Slugify } from './index';
 
 describe('Encryption and Decryption functions', () => {
   it('should correctly encode and decode a string', () => {
@@ -56,5 +56,31 @@ describe('GetDataUser function', () => {
     storage.set('USER_DATA', Encryption(InitData));
     const data = GetDataUser();
     expect(data).toEqual(InitData);
+  });
+});
+
+describe('Slugify', () => {
+  it('returns a slugified string', () => {
+    const input = 'Hello World! This is a Test.';
+    const expectedOutput = 'hello-world-this-is-a-test';
+
+    const result = Slugify(input);
+    expect(result).toBe(expectedOutput);
+  });
+
+  it('returns an empty string for an empty input', () => {
+    const input = '';
+    const expectedOutput = '';
+
+    const result = Slugify(input);
+    expect(result).toBe(expectedOutput);
+  });
+
+  it('removes special characters and replaces spaces with hyphens', () => {
+    const input = 'Some *special* characters!@#$%^&';
+    const expectedOutput = 'some-special-characters';
+
+    const result = Slugify(input);
+    expect(result).toBe(expectedOutput);
   });
 });
