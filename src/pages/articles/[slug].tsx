@@ -9,15 +9,22 @@ import { countLimitFreeArticle, getTicket } from '@/features/articles/helpers';
 import { Decryption, Encryption } from '@/helpers';
 import { useEffect, useState } from 'react';
 import router from 'next/router';
-import Modal from '@/components/modal';
+import Modal, { Variant } from '@/components/modal';
 
 export default function DetailArticle() {
   const { setDataUser, user } = useGlobalContext();
   const [isLoading, setIsLoading] = useState(true);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  const [messageConfirm, setMessageConfirm] = useState<{ message: string; isOpen: boolean }>({
+  const [modalMessage, setModalMessage] = useState<{
+    message: string;
+    isOpen: boolean;
+    title: string;
+    variant: Variant;
+  }>({
+    title: '',
     message: '',
     isOpen: false,
+    variant: 'success',
   });
   const [dataDetail, setDataDetail] = useState<Articles>({
     id: 0,
@@ -53,11 +60,30 @@ export default function DetailArticle() {
   const onConfirmBuyArticle = (data: Articles): void => {
     const isBookBuyed = user.books.list.find(list => list.title === data.title);
 
-    if (isBookBuyed) setMessageConfirm({ message: 'This article already buyed!', isOpen: true });
+    setModalMessage(prevState => ({
+      ...prevState,
+      title: 'Failed to buy this article',
+      variant: 'danger',
+    }));
+
+    if (isBookBuyed)
+      setModalMessage(prevState => ({
+        ...prevState,
+        isOpen: true,
+        message: 'This article already buyed!',
+      }));
     else if (user.totalCoin === 0)
-      setMessageConfirm({ message: 'Your coint is not enough to buy this article!', isOpen: true });
+      setModalMessage(prevState => ({
+        ...prevState,
+        isOpen: true,
+        message: 'Your coint is not enough to buy this article!',
+      }));
     else if (user.limitFree === 0)
-      setMessageConfirm({ message: 'Your quota limit is empty!', isOpen: true });
+      setModalMessage(prevState => ({
+        ...prevState,
+        isOpen: true,
+        message: 'Your quota limit is empty!',
+      }));
     else setIsOpenConfirm(true);
   };
 
@@ -82,7 +108,15 @@ export default function DetailArticle() {
     setDataUser(dataUser);
     storage.set('USER_DATA', Encryption(dataUser));
     setIsOpenConfirm(false);
+    setModalMessage({
+      variant: 'success',
+      title: 'Success buying',
+      isOpen: true,
+      message: 'Your article has been success buyed!',
+    });
   };
+
+  console.log('modalMessage', modalMessage);
 
   return (
     <Layout isLoading={isLoading}>
@@ -149,19 +183,23 @@ export default function DetailArticle() {
 
       {/* Modal for message action */}
       <Modal
-        onClose={() => setMessageConfirm({ message: '', isOpen: false })}
-        isOpen={messageConfirm.isOpen}
-        titleModal="Failed to buy this article"
-        variant="danger"
+        onClose={() =>
+          setModalMessage({ title: '', message: '', isOpen: false, variant: 'success' })
+        }
+        isOpen={modalMessage.isOpen}
+        titleModal={modalMessage.title}
+        variant={modalMessage.variant}
       >
         <div className="flex flex-col mt-4 gap-2">
-          <p>{messageConfirm.message}</p>
+          <p>{modalMessage.message}</p>
         </div>
         <div className="flex gap-2 mt-4">
           <Button
             text="Close"
             type="button"
-            onClick={() => setMessageConfirm({ message: '', isOpen: false })}
+            onClick={() =>
+              setModalMessage({ title: '', message: '', isOpen: false, variant: 'success' })
+            }
             variant="warning"
           />
         </div>
