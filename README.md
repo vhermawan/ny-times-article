@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Delos NY Books
+
+Hello, this is documentation about Delos NY books.
+
+## Prerequisites
+
+What things you need to install the software and how to install them. In this case you must have Node Js.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. To develop this project, please follow this step below.
+
+First clone this repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/vhermawan/ny-times-article
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy file .env.example to .env
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+Fill the env with your API_KEY
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+If you don't have KEY before, you can make API_KEY in this [page](https://developer.nytimes.com)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Then install dependencies use yarn in your local machine
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn install or yarn
+```
 
-## Learn More
+Run development server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Finally you can access http://localhost:3000 to see your project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Frequently Tools Development
 
-## Deploy on Vercel
+- [Next Js v13.4.0](https://nextjs.org/docs/getting-started)
+- [![Node Js](https://badge.fury.io/js/node.svg)](https://badge.fury.io/js/node)
+- [Tailwind Css v3.3.2](https://tailwindcss.com/docs)
+- [React Query](https://react-query-v3.tanstack.com/)
+- [Jest](https://jestjs.io/)
+- [Sonarqube](https://www.sonarsource.com/products/sonarqube/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Versioning
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project use [SemVer](http://semver.org/) for versioning and commit.
