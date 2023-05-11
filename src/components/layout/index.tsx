@@ -15,12 +15,12 @@ const Layout: FC<LayoutProps> = ({ children, isLoading }) => {
 
   useEffect(() => {
     InitializeData();
-  }, [InitializeData]);
+  }, []);
 
   useEffect(() => {
     const dataUser = GetDataUser();
     if (dataUser) setDataUser(dataUser);
-  }, [GetDataUser]);
+  }, [GetDataUser, setDataUser]);
 
   return (
     <>

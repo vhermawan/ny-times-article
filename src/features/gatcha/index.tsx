@@ -75,7 +75,7 @@ const GatchaPage: FC = () => {
                 Redeem your ticket
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Reedem your ticket and get more coint, if you never try you'll never know!
+                Reedem your ticket and get more coint, if you never try you will never know!
               </p>
               <div className="mt-4 flex items-center justify-center gap-x-6">
                 <button
@@ -93,10 +93,10 @@ const GatchaPage: FC = () => {
                     <div className="relative rounded-lg h-[200px] w-[200px] px-3 py-1 text-sm leading-6 bg-gradient-to-tr from-[#ff80b5] to-[#2313ff] text-white ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                       <div className="flex flex-col justify-center h-full m-auto text-center">
                         {data === 0 ? (
-                          <h1 className="font-bold">You're unlucky, please try again 😋</h1>
+                          <h1 className="font-bold">You are unlucky, please try again 😋</h1>
                         ) : (
                           <>
-                            <h1 className="font-bold">Congrat's 🎉 yout got</h1>
+                            <h1 className="font-bold">Congrats 🎉 yout got</h1>
                             <p className="text-2xl font-bold">{formatToMoney(data)} Coin</p>
                           </>
                         )}

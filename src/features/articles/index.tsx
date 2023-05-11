@@ -66,7 +66,7 @@ const ArticlePage: FC = () => {
       });
       if (node) observer.current.observe(node);
     },
-    [isFecthingSearch],
+    [isFecthingSearch, hasMore],
   );
 
   const isLoading = (isFecthingSearch && page === 0) || isFetching;

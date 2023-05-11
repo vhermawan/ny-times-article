@@ -10,6 +10,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import NavLink from '../navLink';
 import { formatToMoney } from '@/common/lib/format';
 import { useGlobalContext } from '@/context';
+import Link from 'next/link';
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ');
@@ -39,7 +40,7 @@ export default function Example() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">NY | Book</span>
             <img
               className="h-8 w-auto"
@@ -47,7 +48,7 @@ export default function Example() {
               alt="icon-header"
               loading="lazy"
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -114,7 +115,7 @@ export default function Example() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Ny Book</span>
               <img
                 className="h-8 w-auto"
@@ -122,7 +123,7 @@ export default function Example() {
                 alt="icon-header"
                 loading="lazy"
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"

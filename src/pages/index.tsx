@@ -1,5 +1,6 @@
 import Container from '@/components/container';
 import Layout from '@/components/layout';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -23,12 +24,12 @@ export default function Home() {
                   this page. Buy an article and find a new experience
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
-                  <a
+                  <Link
                     href="/articles"
                     className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Get started
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
