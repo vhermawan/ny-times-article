@@ -22,9 +22,6 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children, titleModal, variant 
         return 'bg-yellow-500 text-white';
       case 'danger':
         return 'bg-red-500 text-white';
-      default:
-        const neverHappen: never = variant;
-        return neverHappen;
     }
   };
 

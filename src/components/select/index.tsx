@@ -10,6 +10,7 @@ const Select: FC<SelectProps> = ({ listOption, onSelect, value }) => {
   return (
     <div className="inline-block relative w-32 my-auto">
       <select
+        id="select"
         onChange={e => {
           onSelect(e.target.value);
         }}

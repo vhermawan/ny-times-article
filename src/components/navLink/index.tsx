@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-type NavLinkProps = {
+export type NavLinkProps = {
   children: React.ReactNode;
   href: string;
   className?: string;

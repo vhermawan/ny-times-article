@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Button from '../button';
 
-type CardProps = {
+export type CardProps = {
   data: Articles;
   onReadMore: (data: Articles) => void;
 };

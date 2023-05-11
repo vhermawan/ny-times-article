@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export type Variant = 'success' | 'info' | 'warning';
+export type Variant = 'success' | 'info' | 'warning' | never;
 
 export type ButtonProps = {
   text: string;
@@ -18,9 +18,6 @@ const Button: FC<ButtonProps> = ({ text, onClick, type, variant }) => {
         return 'bg-blue-800 border hover:bg-blue-800 dark:bg-blue-600 dark:focus:ring-blue-800';
       case 'warning':
         return 'bg-yellow-800 border hover:bg-yellow-800 dark:bg-yellow-600 dark:focus:ring-yellow-800';
-      default:
-        const neverHappen: never = variant;
-        return neverHappen;
     }
   };
 
