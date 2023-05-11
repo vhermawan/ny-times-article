@@ -32,3 +32,11 @@ export function Slugify(str: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-)|(-$)/g, '');
 }
+
+export function CountDiffDays(publishDate: string): number {
+  const date = new Date();
+  const startDate = new Date(publishDate);
+  const diffInMilliseconds = date.getTime() - startDate.getTime();
+  const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+  return diffInDays;
+}

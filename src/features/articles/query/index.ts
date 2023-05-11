@@ -1,30 +1,12 @@
 import { API } from "@/common/api/api";
-import { z } from "zod";
 
-export async function getArticles (type:string, period:string, responseSchema?: z.ZodSchema)  {
+
+export async function getArticles (type:string, period:string)  {
   const response = await API.get(`/mostpopular/v2/${type}/${period}.json?`)
-  if (response?.status >= 200 || response?.status < 400) {
-    if (responseSchema) {
-      try {
-        return responseSchema.parse(response.data);
-      } catch (error) {
-        throw new Error();
-      }
-    }
-    return response.data;
-  }
+  return response.data;
 }
 
-export async function searchArticles (page: number, responseSchema?: z.ZodSchema)  {
+export async function searchArticles (page: number)  {
   const response = await API.get(`/search/v2/articlesearch.json?sort=newest&page=${page}&`)
-  if (response?.status >= 200 || response?.status < 400) {
-    if (responseSchema) {
-      try {
-        return responseSchema.parse(response.data);
-      } catch (error) {
-        throw new Error();
-      }
-    }
-    return response.data;
-  }
+  return response.data;
 }

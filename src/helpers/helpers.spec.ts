@@ -1,6 +1,6 @@
 import { storage } from '@/common/lib/storage';
 import InitData from '@/data/init.json'
-import { Encryption, Decryption, InitializeData, ResetData, GetDataUser, Slugify } from './index';
+import { Encryption, Decryption, InitializeData, ResetData, GetDataUser, Slugify, CountDiffDays } from './index';
 
 describe('Encryption and Decryption functions', () => {
   it('should correctly encode and decode a string', () => {
@@ -82,5 +82,14 @@ describe('Slugify', () => {
 
     const result = Slugify(input);
     expect(result).toBe(expectedOutput);
+  });
+});
+
+describe('countDiffDays', () => {
+  it('returns the correct number of days between two dates', () => {
+    const publishDate = '2023-04-25';
+    const result = CountDiffDays(publishDate);
+
+    expect(result).toBe(16);
   });
 });

@@ -12,7 +12,7 @@ import Card from '@/components/card';
 import { storage } from '@/common/lib/storage';
 import { Encryption, Slugify } from '@/helpers';
 import router from 'next/router';
-import { LIST_PERIOD_ARTICLES, LIST_TYPE_ARTICLES } from './constant/index.constant';
+import { LIST_PERIOD_ARTICLES, LIST_TYPE_ARTICLES } from './constant';
 
 const ArticlePage: FC = () => {
   const [type, setType] = useState('all');
