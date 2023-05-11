@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Articles from '../articles';
+import Articles from '../pages/articles';
 
 jest.mock('@/features/articles', () => () => <div data-testid="articles-page" />);
 

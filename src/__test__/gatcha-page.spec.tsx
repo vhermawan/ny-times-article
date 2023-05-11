@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Gatcha from '../gatcha';
+import Gatcha from '../pages/gatcha';
 
 jest.mock('@/features/gatcha', () => () => <div data-testid="gatcha-page" />);
 
