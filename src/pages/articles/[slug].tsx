@@ -72,7 +72,7 @@ export default function DetailArticle() {
         isOpen: true,
         message: 'This article already buyed!',
       }));
-    else if (user.totalCoin === 0)
+    else if (user.totalCoin < data.priceArticle)
       setModalMessage(prevState => ({
         ...prevState,
         isOpen: true,
