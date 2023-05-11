@@ -1,5 +1,5 @@
 export const formatToMoney = (value: number): string => {
-  const dataParsed = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const dataParsed = (value ?? 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   return dataParsed;
 };
 

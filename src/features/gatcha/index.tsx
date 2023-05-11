@@ -18,7 +18,7 @@ const GatchaPage: FC = () => {
 
   const amounts = useRef([50000, 20000, 10000, 13, 0]);
 
-  function getRandomAmount(): number {
+  const getRandomAmount = (): number => {
     const randomIndex = Math.floor(Math.random() * amounts.current.length);
 
     const amount = amounts.current[randomIndex];
@@ -26,9 +26,9 @@ const GatchaPage: FC = () => {
     if (amount === MAX_AMOUNT) amounts.current = [20000, 10000, 13, 0];
 
     return amount;
-  }
+  };
 
-  function getRandomAmountSpecial(): number[] {
+  const getRandomAmountSpecial = (): number[] => {
     const amountRange = (MAX_AMOUNT - MIN_AMOUNT) / 1000;
     const amountsList: number[] = [];
     for (let i = 0; i < 3; i++) {
@@ -36,7 +36,7 @@ const GatchaPage: FC = () => {
       amountsList.push(randomAmount);
     }
     return amountsList;
-  }
+  };
 
   const handleButtonClick = (): void => {
     let randomAmount = getRandomAmount();
