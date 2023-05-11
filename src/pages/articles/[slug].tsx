@@ -116,8 +116,6 @@ export default function DetailArticle() {
     });
   };
 
-  console.log('modalMessage', modalMessage);
-
   return (
     <Layout isLoading={isLoading}>
       <Container>
