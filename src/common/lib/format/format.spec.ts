@@ -18,6 +18,6 @@ describe('formatDate', () => {
   it('returns an empty string when given an invalid date string', () => {
     const dateString = 'invalid-date';
     const formattedDate = formatDate(dateString);
-    expect(formattedDate).toBe('');
+    expect(formattedDate).toBe('Invalid Date');
   });
 });

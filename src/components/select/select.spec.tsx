@@ -11,7 +11,12 @@ describe('Select', () => {
   const onSelectMock = jest.fn();
 
   const renderSelect = (props: SelectProps) => {
-    return render(<Select {...props} />);
+    return render(
+      <>
+        <label htmlFor="select">Select</label>
+        <Select {...props} />
+      </>,
+    );
   };
 
   it('renders the Select component correctly', () => {
